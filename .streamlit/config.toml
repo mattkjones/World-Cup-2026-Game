@@ -1,0 +1,18 @@
+[theme]
+# Set the overall vibe to a sleek dark mode
+base = "dark"
+
+# The neon "Pitch Green" accent for buttons, active tabs, and sliders
+primaryColor = "#1CD679"
+
+# A deep, rich charcoal for the main background (softer on the eyes than pure black)
+backgroundColor = "#111317"
+
+# A slightly lighter slate for the sidebar, forms, and input boxes to create depth
+secondaryBackgroundColor = "#1C1F26"
+
+# A crisp, off-white for maximum readability
+textColor = "#E0E0E0"
+
+# A clean, modern font that feels app-like
+font = "sans serif"
