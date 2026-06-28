@@ -358,86 +358,84 @@ elif current_page == "🏆 Knockout Bracket":
         st.info("🕒 Bracket locks at the end of the day on **June 28th**.")
         st.write("Select the winner of each matchup to build your path to the final.")
         
-        with st.form("knockout_form", border=False): 
-            
-            st.markdown("### Round of 32")
-            c1, c2, c3, c4 = st.columns(4)
-            with c1:
-                with st.container(border=True): m1 = st.selectbox("⚽ Match 1", matchups[1], index=get_ko_index(1, matchups[1]), key="km1")
-                with st.container(border=True): m2 = st.selectbox("⚽ Match 2", matchups[2], index=get_ko_index(2, matchups[2]), key="km2")
-                with st.container(border=True): m3 = st.selectbox("⚽ Match 3", matchups[3], index=get_ko_index(3, matchups[3]), key="km3")
-                with st.container(border=True): m4 = st.selectbox("⚽ Match 4", matchups[4], index=get_ko_index(4, matchups[4]), key="km4")
-            with c2:
-                with st.container(border=True): m5 = st.selectbox("⚽ Match 5", matchups[5], index=get_ko_index(5, matchups[5]), key="km5")
-                with st.container(border=True): m6 = st.selectbox("⚽ Match 6", matchups[6], index=get_ko_index(6, matchups[6]), key="km6")
-                with st.container(border=True): m7 = st.selectbox("⚽ Match 7", matchups[7], index=get_ko_index(7, matchups[7]), key="km7")
-                with st.container(border=True): m8 = st.selectbox("⚽ Match 8", matchups[8], index=get_ko_index(8, matchups[8]), key="km8")
-            with c3:
-                with st.container(border=True): m9 = st.selectbox("⚽ Match 9", matchups[9], index=get_ko_index(9, matchups[9]), key="km9")
-                with st.container(border=True): m10 = st.selectbox("⚽ Match 10", matchups[10], index=get_ko_index(10, matchups[10]), key="km10")
-                with st.container(border=True): m11 = st.selectbox("⚽ Match 11", matchups[11], index=get_ko_index(11, matchups[11]), key="km11")
-                with st.container(border=True): m12 = st.selectbox("⚽ Match 12", matchups[12], index=get_ko_index(12, matchups[12]), key="km12")
-            with c4:
-                with st.container(border=True): m13 = st.selectbox("⚽ Match 13", matchups[13], index=get_ko_index(13, matchups[13]), key="km13")
-                with st.container(border=True): m14 = st.selectbox("⚽ Match 14", matchups[14], index=get_ko_index(14, matchups[14]), key="km14")
-                with st.container(border=True): m15 = st.selectbox("⚽ Match 15", matchups[15], index=get_ko_index(15, matchups[15]), key="km15")
-                with st.container(border=True): m16 = st.selectbox("⚽ Match 16", matchups[16], index=get_ko_index(16, matchups[16]), key="km16")
+        st.markdown("### Round of 32")
+        c1, c2, c3, c4 = st.columns(4)
+        with c1:
+            with st.container(border=True): m1 = st.selectbox("⚽ Match 1", matchups[1], index=get_ko_index(1, matchups[1]), key="km1")
+            with st.container(border=True): m2 = st.selectbox("⚽ Match 2", matchups[2], index=get_ko_index(2, matchups[2]), key="km2")
+            with st.container(border=True): m3 = st.selectbox("⚽ Match 3", matchups[3], index=get_ko_index(3, matchups[3]), key="km3")
+            with st.container(border=True): m4 = st.selectbox("⚽ Match 4", matchups[4], index=get_ko_index(4, matchups[4]), key="km4")
+        with c2:
+            with st.container(border=True): m5 = st.selectbox("⚽ Match 5", matchups[5], index=get_ko_index(5, matchups[5]), key="km5")
+            with st.container(border=True): m6 = st.selectbox("⚽ Match 6", matchups[6], index=get_ko_index(6, matchups[6]), key="km6")
+            with st.container(border=True): m7 = st.selectbox("⚽ Match 7", matchups[7], index=get_ko_index(7, matchups[7]), key="km7")
+            with st.container(border=True): m8 = st.selectbox("⚽ Match 8", matchups[8], index=get_ko_index(8, matchups[8]), key="km8")
+        with c3:
+            with st.container(border=True): m9 = st.selectbox("⚽ Match 9", matchups[9], index=get_ko_index(9, matchups[9]), key="km9")
+            with st.container(border=True): m10 = st.selectbox("⚽ Match 10", matchups[10], index=get_ko_index(10, matchups[10]), key="km10")
+            with st.container(border=True): m11 = st.selectbox("⚽ Match 11", matchups[11], index=get_ko_index(11, matchups[11]), key="km11")
+            with st.container(border=True): m12 = st.selectbox("⚽ Match 12", matchups[12], index=get_ko_index(12, matchups[12]), key="km12")
+        with c4:
+            with st.container(border=True): m13 = st.selectbox("⚽ Match 13", matchups[13], index=get_ko_index(13, matchups[13]), key="km13")
+            with st.container(border=True): m14 = st.selectbox("⚽ Match 14", matchups[14], index=get_ko_index(14, matchups[14]), key="km14")
+            with st.container(border=True): m15 = st.selectbox("⚽ Match 15", matchups[15], index=get_ko_index(15, matchups[15]), key="km15")
+            with st.container(border=True): m16 = st.selectbox("⚽ Match 16", matchups[16], index=get_ko_index(16, matchups[16]), key="km16")
 
-            st.divider()
-            
-            st.markdown("### Round of 16")
-            r16c1, r16c2, r16c3, r16c4 = st.columns(4)
-            with r16c1:
-                with st.container(border=True): m17 = st.selectbox("🔥 Match 17", [m1, m2], index=get_ko_index(17, [m1, m2]), key="km17")
-                with st.container(border=True): m18 = st.selectbox("🔥 Match 18", [m3, m4], index=get_ko_index(18, [m3, m4]), key="km18")
-            with r16c2:
-                with st.container(border=True): m19 = st.selectbox("🔥 Match 19", [m5, m6], index=get_ko_index(19, [m5, m6]), key="km19")
-                with st.container(border=True): m20 = st.selectbox("🔥 Match 20", [m7, m8], index=get_ko_index(20, [m7, m8]), key="km20")
-            with r16c3:
-                with st.container(border=True): m21 = st.selectbox("🔥 Match 21", [m9, m10], index=get_ko_index(21, [m9, m10]), key="km21")
-                with st.container(border=True): m22 = st.selectbox("🔥 Match 22", [m11, m12], index=get_ko_index(22, [m11, m12]), key="km22")
-            with r16c4:
-                with st.container(border=True): m23 = st.selectbox("🔥 Match 23", [m13, m14], index=get_ko_index(23, [m13, m14]), key="km23")
-                with st.container(border=True): m24 = st.selectbox("🔥 Match 24", [m15, m16], index=get_ko_index(24, [m15, m16]), key="km24")
+        st.divider()
+        
+        st.markdown("### Round of 16")
+        r16c1, r16c2, r16c3, r16c4 = st.columns(4)
+        with r16c1:
+            with st.container(border=True): m17 = st.selectbox("🔥 Match 17", [m1, m2], index=get_ko_index(17, [m1, m2]), key="km17")
+            with st.container(border=True): m18 = st.selectbox("🔥 Match 18", [m3, m4], index=get_ko_index(18, [m3, m4]), key="km18")
+        with r16c2:
+            with st.container(border=True): m19 = st.selectbox("🔥 Match 19", [m5, m6], index=get_ko_index(19, [m5, m6]), key="km19")
+            with st.container(border=True): m20 = st.selectbox("🔥 Match 20", [m7, m8], index=get_ko_index(20, [m7, m8]), key="km20")
+        with r16c3:
+            with st.container(border=True): m21 = st.selectbox("🔥 Match 21", [m9, m10], index=get_ko_index(21, [m9, m10]), key="km21")
+            with st.container(border=True): m22 = st.selectbox("🔥 Match 22", [m11, m12], index=get_ko_index(22, [m11, m12]), key="km22")
+        with r16c4:
+            with st.container(border=True): m23 = st.selectbox("🔥 Match 23", [m13, m14], index=get_ko_index(23, [m13, m14]), key="km23")
+            with st.container(border=True): m24 = st.selectbox("🔥 Match 24", [m15, m16], index=get_ko_index(24, [m15, m16]), key="km24")
 
-            st.divider()
-            
-            st.markdown("### Quarterfinals")
-            qfc1, qfc2 = st.columns(2)
-            with qfc1:
-                with st.container(border=True): m25 = st.selectbox("⚡ Match 25", [m17, m18], index=get_ko_index(25, [m17, m18]), key="km25")
-                with st.container(border=True): m26 = st.selectbox("⚡ Match 26", [m19, m20], index=get_ko_index(26, [m19, m20]), key="km26")
-            with qfc2:
-                with st.container(border=True): m27 = st.selectbox("⚡ Match 27", [m21, m22], index=get_ko_index(27, [m21, m22]), key="km27")
-                with st.container(border=True): m28 = st.selectbox("⚡ Match 28", [m23, m24], index=get_ko_index(28, [m23, m24]), key="km28")
+        st.divider()
+        
+        st.markdown("### Quarterfinals")
+        qfc1, qfc2 = st.columns(2)
+        with qfc1:
+            with st.container(border=True): m25 = st.selectbox("⚡ Match 25", [m17, m18], index=get_ko_index(25, [m17, m18]), key="km25")
+            with st.container(border=True): m26 = st.selectbox("⚡ Match 26", [m19, m20], index=get_ko_index(26, [m19, m20]), key="km26")
+        with qfc2:
+            with st.container(border=True): m27 = st.selectbox("⚡ Match 27", [m21, m22], index=get_ko_index(27, [m21, m22]), key="km27")
+            with st.container(border=True): m28 = st.selectbox("⚡ Match 28", [m23, m24], index=get_ko_index(28, [m23, m24]), key="km28")
 
-            st.divider()
+        st.divider()
+        
+        sf1, sf2 = st.columns(2)
+        with sf1:
+            st.markdown("### Semifinals")
+            with st.container(border=True): m29 = st.selectbox("🌟 Match 29", [m25, m26], index=get_ko_index(29, [m25, m26]), key="km29")
+            with st.container(border=True): m30 = st.selectbox("🌟 Match 30", [m27, m28], index=get_ko_index(30, [m27, m28]), key="km30")
+        
+        with sf2:
+            st.markdown("### 🏆 World Cup Final")
+            st.write("Pick your ultimate champion:")
+            with st.container(border=True): 
+                m31 = st.selectbox("🥇 Champion", [m29, m30], index=get_ko_index(31, [m29, m30]), key="km31", label_visibility="collapsed")
             
-            sf1, sf2 = st.columns(2)
-            with sf1:
-                st.markdown("### Semifinals")
-                with st.container(border=True): m29 = st.selectbox("🌟 Match 29", [m25, m26], index=get_ko_index(29, [m25, m26]), key="km29")
-                with st.container(border=True): m30 = st.selectbox("🌟 Match 30", [m27, m28], index=get_ko_index(30, [m27, m28]), key="km30")
-            
-            with sf2:
-                st.markdown("### 🏆 World Cup Final")
-                st.write("Pick your ultimate champion:")
-                with st.container(border=True): 
-                    m31 = st.selectbox("🥇 Champion", [m29, m30], index=get_ko_index(31, [m29, m30]), key="km31", label_visibility="collapsed")
-                
-                st.markdown("<br>", unsafe_allow_html=True)
-                submit_bracket = st.form_submit_button("Lock In Full Bracket", type="primary", use_container_width=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            submit_bracket = st.button("Lock In Full Bracket", type="primary", use_container_width=True)
 
-            if submit_bracket:
-                winners = [m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16,m17,m18,m19,m20,m21,m22,m23,m24,m25,m26,m27,m28,m29,m30,m31]
-                
-                with st.spinner("Securing your bracket..."):
-                    supabase.table("knockout_predictions").delete().eq("user_id", st.session_state["user_id"]).execute()
-                    payload = [{"user_id": st.session_state["user_id"], "match_id": i+1, "predicted_winner": w} for i, w in enumerate(winners)]
-                    supabase.table("knockout_predictions").insert(payload).execute()
-                
-                st.toast(f"Knockout bracket locked! {m31} to win it all! 🚀", icon="✅")
-                st.balloons()
+        if submit_bracket:
+            winners = [m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16,m17,m18,m19,m20,m21,m22,m23,m24,m25,m26,m27,m28,m29,m30,m31]
+            
+            with st.spinner("Securing your bracket..."):
+                supabase.table("knockout_predictions").delete().eq("user_id", st.session_state["user_id"]).execute()
+                payload = [{"user_id": st.session_state["user_id"], "match_id": i+1, "predicted_winner": w} for i, w in enumerate(winners)]
+                supabase.table("knockout_predictions").insert(payload).execute()
+            
+            st.toast(f"Knockout bracket locked! {m31} to win it all! 🚀", icon="✅")
+            st.balloons()
 
     # --- MODE 2: GRADING SCORECARD (After Deadline) ---
     else:
@@ -504,7 +502,7 @@ elif current_page == "🏆 Knockout Bracket":
         with sf2:
             st.markdown("### 🏆 World Cup Final")
             render_grading_card(31, "🥇")
-
+            
 # 4. ADMIN PANEL
 elif current_page == "⚙️ Admin Panel":
     st.title("Admin Control Panel")
