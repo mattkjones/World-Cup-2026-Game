@@ -344,6 +344,10 @@ elif current_page == "🏆 Knockout Bracket":
     existing_ko = supabase.table("knockout_predictions").select("*").eq("user_id", st.session_state["user_id"]).execute()
     saved_ko_picks = {r["match_id"]: r["predicted_winner"] for r in existing_ko.data}
 
+    # 🚀 NEW: Fetch live matchups dynamically from your new table
+    matchups_res = supabase.table("official_matchups").select("*").execute()
+    matchups = {m["match_id"]: [m["team_1"], m["team_2"]] for m in matchups_res.data}
+
     def get_ko_index(match_id, options_list):
         saved = saved_ko_picks.get(match_id)
         return options_list.index(saved) if saved in options_list else 0
@@ -359,25 +363,25 @@ elif current_page == "🏆 Knockout Bracket":
             st.markdown("### Round of 32")
             c1, c2, c3, c4 = st.columns(4)
             with c1:
-                with st.container(border=True): m1 = st.selectbox("⚽ Match 1", ["Winner A", "Runner-up B"], index=get_ko_index(1, ["Winner A", "Runner-up B"]), key="km1")
-                with st.container(border=True): m2 = st.selectbox("⚽ Match 2", ["Winner C", "Runner-up D"], index=get_ko_index(2, ["Winner C", "Runner-up D"]), key="km2")
-                with st.container(border=True): m3 = st.selectbox("⚽ Match 3", ["Winner E", "Runner-up F"], index=get_ko_index(3, ["Winner E", "Runner-up F"]), key="km3")
-                with st.container(border=True): m4 = st.selectbox("⚽ Match 4", ["Winner G", "Runner-up H"], index=get_ko_index(4, ["Winner G", "Runner-up H"]), key="km4")
+                with st.container(border=True): m1 = st.selectbox("⚽ Match 1", matchups[1], index=get_ko_index(1, matchups[1]), key="km1")
+                with st.container(border=True): m2 = st.selectbox("⚽ Match 2", matchups[2], index=get_ko_index(2, matchups[2]), key="km2")
+                with st.container(border=True): m3 = st.selectbox("⚽ Match 3", matchups[3], index=get_ko_index(3, matchups[3]), key="km3")
+                with st.container(border=True): m4 = st.selectbox("⚽ Match 4", matchups[4], index=get_ko_index(4, matchups[4]), key="km4")
             with c2:
-                with st.container(border=True): m5 = st.selectbox("⚽ Match 5", ["Winner I", "Runner-up J"], index=get_ko_index(5, ["Winner I", "Runner-up J"]), key="km5")
-                with st.container(border=True): m6 = st.selectbox("⚽ Match 6", ["Winner K", "Runner-up L"], index=get_ko_index(6, ["Winner K", "Runner-up L"]), key="km6")
-                with st.container(border=True): m7 = st.selectbox("⚽ Match 7", ["Runner-up A", "Runner-up C"], index=get_ko_index(7, ["Runner-up A", "Runner-up C"]), key="km7")
-                with st.container(border=True): m8 = st.selectbox("⚽ Match 8", ["Runner-up E", "Runner-up G"], index=get_ko_index(8, ["Runner-up E", "Runner-up G"]), key="km8")
+                with st.container(border=True): m5 = st.selectbox("⚽ Match 5", matchups[5], index=get_ko_index(5, matchups[5]), key="km5")
+                with st.container(border=True): m6 = st.selectbox("⚽ Match 6", matchups[6], index=get_ko_index(6, matchups[6]), key="km6")
+                with st.container(border=True): m7 = st.selectbox("⚽ Match 7", matchups[7], index=get_ko_index(7, matchups[7]), key="km7")
+                with st.container(border=True): m8 = st.selectbox("⚽ Match 8", matchups[8], index=get_ko_index(8, matchups[8]), key="km8")
             with c3:
-                with st.container(border=True): m9 = st.selectbox("⚽ Match 9", ["Winner B", "3rd Place 1"], index=get_ko_index(9, ["Winner B", "3rd Place 1"]), key="km9")
-                with st.container(border=True): m10 = st.selectbox("⚽ Match 10", ["Winner D", "3rd Place 2"], index=get_ko_index(10, ["Winner D", "3rd Place 2"]), key="km10")
-                with st.container(border=True): m11 = st.selectbox("⚽ Match 11", ["Winner F", "3rd Place 3"], index=get_ko_index(11, ["Winner F", "3rd Place 3"]), key="km11")
-                with st.container(border=True): m12 = st.selectbox("⚽ Match 12", ["Winner H", "3rd Place 4"], index=get_ko_index(12, ["Winner H", "3rd Place 4"]), key="km12")
+                with st.container(border=True): m9 = st.selectbox("⚽ Match 9", matchups[9], index=get_ko_index(9, matchups[9]), key="km9")
+                with st.container(border=True): m10 = st.selectbox("⚽ Match 10", matchups[10], index=get_ko_index(10, matchups[10]), key="km10")
+                with st.container(border=True): m11 = st.selectbox("⚽ Match 11", matchups[11], index=get_ko_index(11, matchups[11]), key="km11")
+                with st.container(border=True): m12 = st.selectbox("⚽ Match 12", matchups[12], index=get_ko_index(12, matchups[12]), key="km12")
             with c4:
-                with st.container(border=True): m13 = st.selectbox("⚽ Match 13", ["Winner J", "3rd Place 5"], index=get_ko_index(13, ["Winner J", "3rd Place 5"]), key="km13")
-                with st.container(border=True): m14 = st.selectbox("⚽ Match 14", ["Winner L", "3rd Place 6"], index=get_ko_index(14, ["Winner L", "3rd Place 6"]), key="km14")
-                with st.container(border=True): m15 = st.selectbox("⚽ Match 15", ["Runner-up B", "3rd Place 7"], index=get_ko_index(15, ["Runner-up B", "3rd Place 7"]), key="km15")
-                with st.container(border=True): m16 = st.selectbox("⚽ Match 16", ["Runner-up D", "3rd Place 8"], index=get_ko_index(16, ["Runner-up D", "3rd Place 8"]), key="km16")
+                with st.container(border=True): m13 = st.selectbox("⚽ Match 13", matchups[13], index=get_ko_index(13, matchups[13]), key="km13")
+                with st.container(border=True): m14 = st.selectbox("⚽ Match 14", matchups[14], index=get_ko_index(14, matchups[14]), key="km14")
+                with st.container(border=True): m15 = st.selectbox("⚽ Match 15", matchups[15], index=get_ko_index(15, matchups[15]), key="km15")
+                with st.container(border=True): m16 = st.selectbox("⚽ Match 16", matchups[16], index=get_ko_index(16, matchups[16]), key="km16")
 
             st.divider()
             

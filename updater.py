@@ -13,33 +13,18 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-# --- 2. FETCH MATCH DATA (Placeholder) ---
+# --- 2. FETCH MATCH DATA ---
 def fetch_real_world_results():
-    """
-    This function will call your chosen sports API (e.g., API-Football).
-    For now, it returns a mock structure of what an API response looks like.
-    """
-    print("Fetching latest match data from API...")
+    print("Fetching real-world match data from Supabase...")
     
-    # API_URL = "https://v3.football.api-sports.io/standings?league=1&season=2026"
-    # headers = {"x-apisports-key": os.environ.get("SPORTS_API_KEY")}
-    # response = requests.get(API_URL, headers=headers)
-    # data = response.json()
+    # ⬇️ FIX: Pointing to your existing table!
+    group_res = supabase.table("actual_results").select("*").execute()
+    real_group_data = group_res.data
     
-    # Mock data structure to show you how to parse it later
-    # Note: Use the exact string names with emojis that match your Streamlit app!
-    mock_group_data = [
-        {"group_name": "A", "team_name": "🇲🇽 Mexico", "actual_rank": 1, "actually_advanced": True},
-        {"group_name": "A", "team_name": "🇨🇿 Czechia", "actual_rank": 2, "actually_advanced": True},
-        {"group_name": "A", "team_name": "🇰🇷 South Korea", "actual_rank": 3, "actually_advanced": False},
-        {"group_name": "A", "team_name": "🇿🇦 South Africa", "actual_rank": 4, "actually_advanced": False},
-    ]
+    ko_res = supabase.table("actual_knockout_results").select("*").execute()
+    real_knockout_data = ko_res.data
     
-    mock_knockout_data = [
-        {"match_id": 1, "actual_winner": "🇲🇽 Mexico"}, # E.g., Match 1 finished, Mexico won
-    ]
-    
-    return mock_group_data, mock_knockout_data
+    return real_group_data, real_knockout_data
 
 
 # --- 3. SCORING ENGINE ---
@@ -85,17 +70,21 @@ def calculate_and_update_leaderboard(group_results, knockout_results):
             pred_rank = pred["predicted_rank"]
             is_wildcard = pred.get("is_advancing_bonus", False)
             
-            # The Advancement Check (Scenario 1 & 2)
+            # Did the user predict them to move on?
             predicted_to_advance = (pred_rank in [1, 2]) or is_wildcard
+            # Did they actually move on?
             actually_advanced = team in actual_advancing_teams
             
-            if predicted_to_advance and actually_advanced:
-                advancement_points += 2  # Adjust point values here as desired
-                
-            # The Exact Rank Check
             if team in actual_team_ranks:
-                if pred_rank == actual_team_ranks[team]:
-                    rank_points += 1 # Adjust point values here as desired
+                real_rank = actual_team_ranks[team]
+                
+                # Condition A: Perfect Rank Match (2 Points)
+                if pred_rank == real_rank:
+                    rank_points += 2
+                    
+                # Condition B: Safety Net Match (1 Point)
+                elif predicted_to_advance and actually_advanced:
+                    advancement_points += 1
                     
         # --- KNOCKOUT STAGE SCORING ---
         for pred in user_ko_preds:
